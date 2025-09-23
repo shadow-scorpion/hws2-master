@@ -1,0 +1,34 @@
+.sendForm {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.textarea {
+    width: 100%;
+    background-color: #F5F7FB;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.button {
+    align-self: start;
+    padding: 10px 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: #0066CC;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}
+
+.button:hover {
+    background-color: #0059b3;
+}
+.button:active {
+    background-color: inherit;
+    color: #0066cc;
+}
