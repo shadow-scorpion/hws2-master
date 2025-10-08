@@ -28,6 +28,7 @@ const Stand = () => {
                         value={stateForAllInputs}
                         onChangeText={setValue}
                         error={error}
+                        spanClassName={s.span}
                         onEnter={() => {
                             setError(
                                 stateForAllInputs.trim()

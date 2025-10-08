@@ -2,13 +2,28 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
 }
 
 .inputs {
     display: flex;
     flex-direction: column;
     gap: 48px;
+    width: 372px;
 }
+
+.inputs > div {
+    width: 100%; /* Убедиться что обертки div тоже занимают полную ширину */
+    /*max-height: 40px;*/
+    height: 36px;
+}
+
+.span {
+    font-size: 10px;
+    line-height: 100%;
+ order: 1;
+}
+
 
 .buttons {
     display: flex;

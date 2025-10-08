@@ -1,20 +1,36 @@
 .input:focus {
+    outline: none;
 }
 
 .input {
+    border: 1px solid #D1D1D1;
+    max-width: 372px;
+    width: 372px;
+    max-height: 36px;
+    height: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    order: 2;
 }
 
 .inputWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
 }
 
 .superInput {
 }
 
 .errorInput {
+    border: 1px solid red;
 }
 
 .errorInput:focus {
+    outline: none;
 }
 
 .error {
+    color: red;
 }

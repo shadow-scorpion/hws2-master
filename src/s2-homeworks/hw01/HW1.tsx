@@ -41,10 +41,6 @@ export const friendMessage0: MessageType = {
 }
 
 const HW1 = () => {
-    const reverseFn = (text: string) => {
-        return text.split("").reverse().join("").split(" ").reverse().join(" ");
-    }
-    console.log(reverseFn('The quick brown fox jumps over the lazy dog'))
 
     return (
         <div id={'hw1'}>
