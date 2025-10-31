@@ -14,7 +14,6 @@ import s from './HW6.module.css'
 const HW6 = () => {
     const [value, setValue] = useState<string>('')
 
-
     const save = () => {
         saveState<string>('hw6-editable-span-value', value)
     }
@@ -40,6 +39,8 @@ const HW6 = () => {
                             defaultText: 'Enter text...',
                         }}
                     />
+                    {/*    <h1>some text</h1>*/}
+                    {/*<SuperEditableSpan>*/}
                 </div>
 
                 <div className={s.buttonsContainer}>
@@ -54,6 +55,7 @@ const HW6 = () => {
                         Get from ls
                     </SuperButton>
                 </div>
+                {/*<input><h1>some text</h1></input>*/}
             </div>
         </div>
     )

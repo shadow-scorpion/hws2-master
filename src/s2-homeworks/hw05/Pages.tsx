@@ -4,6 +4,7 @@ import Error404 from './pages/Error404'
 import PreJunior from './pages/PreJunior'
 import Junior from './pages/Junior'
 import JuniorPlus from './pages/JuniorPlus'
+import s from '../../s1-main/App.module.css'
 
 export const PATH = {
     PRE_JUNIOR: '/pre-junior',
@@ -13,7 +14,7 @@ export const PATH = {
 
 function Pages() {
     return (
-        <div>
+        <div className={s.container}>
             {/*Routes выбирает первый подходящий роут*/}
             <Routes>
                 {/*роутинг будут писать студенты*/}

@@ -1,4 +1,8 @@
 .radio {
+    accent-color: black;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
 }
 
 .radio::before {
@@ -8,8 +12,43 @@
 .radio:checked::before {
 }
 
+/*.radio {*/
+/*    appearance: none; !* убираем стандартный вид *!*/
+/*    width: 18px;*/
+/*    height: 18px;*/
+/*    border: 2px solid #888;*/
+/*    border-radius: 50%;*/
+/*    display: inline-block;*/
+/*    vertical-align: middle;*/
+/*    margin-right: 8px;*/
+/*    cursor: pointer;*/
+/*    transition: all 0.2s ease;*/
+/*}*/
+
+/*.radio:checked {*/
+/*    width: 7px;*/
+/*    height: 7px;*/
+/*    border-radius: 7px;*/
+/*    border-color: #4caf50;*/
+/*    background-color: #4caf50;*/
+/*}*/
+
+/*.radio:hover {*/
+/*    border-color: #2196f3;*/
+/*}*/
+
+.span {
+    font-weight: 400;
+    font-size: 16px;
+}
+
 .label {
+    display: flex;
+    gap: 10px;
 }
 
 .options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }

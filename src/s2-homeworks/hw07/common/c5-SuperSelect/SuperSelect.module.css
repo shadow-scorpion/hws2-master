@@ -1,4 +1,7 @@
 .select {
+    width: 160px;
+    border-color:  #C2C2C2;
+    padding: 5px;
 }
 
 .select:focus {
@@ -6,4 +9,6 @@
 
 
 .option:hover {
+    color: #cc9c00;
+    background-color: red;
 }
