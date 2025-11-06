@@ -31,9 +31,6 @@ const HW8 = () => {
     const [people, setPeople] = useState<UserType[]>(initialPeople)
     const [currentSort, setCurrentSort] = useState('')
 
-    const sort = ['Ваня', "Алена", "Дыма", "Вабуня"].sort()
-    console.log('saoa'.localeCompare('Safa') )
-
     const finalPeople = people.map((u: UserType) => <User key={u._id} u={u}/>)
 
     const sortUp = () => {
