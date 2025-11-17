@@ -1,4 +1,6 @@
 .buttonsContainer {
+    display: flex;
+    gap: 20px;
 }
 
 .clock {
@@ -11,4 +13,23 @@
 }
 
 .more {
+    margin-bottom: 25px;
+    color: #000000;
+    opacity: 0.5;
+}
+
+.button {
+    background-color: #0066CC;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 30px;
+    font-family: 'Montserrat', sans-serif
+}
+
+.button:disabled {
+    background-color: #0066CC;
+    color: #FFFFFF;
+    opacity: 0.5;
 }
