@@ -10,6 +10,7 @@ export const PATH = {
     PRE_JUNIOR: '/pre-junior',
     JUNIOR: '/junior',
     JUNIOR_PLUS: '/junior-plus',
+    ERROR404: '/error404'
 }
 
 function Pages() {
@@ -24,7 +25,7 @@ function Pages() {
                 <Route path={'/'} element={<Navigate to={PATH.PRE_JUNIOR} />}/>
                 <Route path={PATH.JUNIOR} element={<Junior />}/>
                 <Route path={PATH.JUNIOR_PLUS} element={<JuniorPlus />}/>
-                <Route path={'/error404'} element={<Error404 />}/>
+                <Route path={PATH.ERROR404} element={<Error404 />}/>
                 <Route path={'/*'} element={<Navigate to={'/error404'} />}/>
 
                 {/*роуты для /pre-junior, /junior, /junior-plus*/}
