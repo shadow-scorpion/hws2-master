@@ -15,7 +15,7 @@ function HW11() {
     const [value1, setValue1] = useState(restoreState<number>('hw11-value1', 0))
     const [value2, setValue2] = useState(restoreState<number>('hw11-value2', 100))
 
-    const change = (_event: Event, value: number | number[]) => {
+    const change = (event: Event, value: number | number[]) => {
         // пишет студент // если пришёл массив - сохранить значения в оба useState, иначе в первый
         if(Array.isArray(value)) {
             setValue1(value[0])
@@ -37,6 +37,9 @@ function HW11() {
                             id={'hw11-single-slider'}
                             value={value1}
                             onChange={change}
+                            min={0}
+                            max={100}
+                            step={1}
                             // сделать так чтоб value1 изменялось // пишет студент
 
                         />
@@ -47,7 +50,9 @@ function HW11() {
                             id={'hw11-double-slider'}
                             value={[value1, value2]}
                             onChange={change}
-                            disableSwap={false}
+                            min={0}
+                            max={100}
+                            step={1}
                             // сделать так чтоб value1/2 изменялось // пишет студент
 
                         />
