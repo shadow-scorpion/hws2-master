@@ -19,10 +19,6 @@ const themes = [
     {id: 3, value: 'dark'},
 ]
 
-export type Theme = {
-    id: number
-    value: string
-}
 
 
 const HW12 = () => {
@@ -35,8 +31,10 @@ const HW12 = () => {
         dispatch(changeThemeIdAC(id))
     }
 
+    console.log(themeId.themeId)
+
     useEffect(() => {
-        document.documentElement.dataset.theme = themeId + ''
+        document.documentElement.dataset.theme = themeId.themeId + ''
     }, [themeId])
 
     return (
@@ -52,7 +50,6 @@ const HW12 = () => {
                     options={themes}
                     onChangeOption={change}
                     // сделать переключение тем
-
                 />
             </div>
         </div>

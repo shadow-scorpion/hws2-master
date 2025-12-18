@@ -1,15 +1,15 @@
 import React, {
     SelectHTMLAttributes,
     DetailedHTMLProps,
-    ChangeEvent, ReactElement,
+    ChangeEvent,
 } from 'react'
 import s from './SuperSelect.module.css'
-import {Theme } from "../../../hw12/HW12";
 
 type DefaultSelectPropsType = DetailedHTMLProps<
     SelectHTMLAttributes<HTMLSelectElement>,
     HTMLSelectElement
 >
+
 
 type SuperSelectPropsType = DefaultSelectPropsType & {
     options?: any[]
@@ -25,8 +25,6 @@ const SuperSelect: React.FC<SuperSelectPropsType> = ({
     ...restProps
 }) => {
 
-    console.log(Boolean(options))
-    console.log(options)
 
     const mappedOptions: JSX.Element[] = options
         ? options.map((o) => (
