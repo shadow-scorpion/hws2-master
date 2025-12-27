@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import s2 from '../../s1-main/App.module.css'
 import s from './HW13.module.css'
 import SuperButton from '../hw04/common/c2-SuperButton/SuperButton'
-import axios from 'axios'
+import axios, {AxiosError} from 'axios'
 import success200 from './images/200.svg'
 import error400 from './images/400.svg'
 import error500 from './images/500.svg'
@@ -13,6 +13,13 @@ import errorUnknown from './images/error.svg'
 * 2 - дизэйблить кнопки пока идёт запрос
 * 3 - сделать стили в соответствии с дизайном
 * */
+
+type ServerError = {
+    errorText: string
+    info: string
+    yourBody:  {success: boolean}
+    yourQuery: Object
+}
 
 const HW13 = () => {
     const [code, setCode] = useState('')
@@ -34,14 +41,39 @@ const HW13 = () => {
         axios
             .post(url, {success: x})
             .then((res) => {
-                setCode('Код 200!')
+                console.log(res)
+                setCode(`Код ${res.status}!`)
+                setText(res.data.errorText)
+                setInfo(res.data.info)
                 setImage(success200)
                 // дописать
 
             })
             .catch((e) => {
                 // дописать
-
+                // let errorMessage = "Unknown error"
+                if (axios.isAxiosError(e)) {
+                    // Ошибка в response NetworkError
+                    if(e.response && e.response.data) {
+                        const data = e.response.data as ServerError
+                        setCode("Ошибка " + e.response.status)
+                        setInfo(data.info)
+                        setText(data.errorText)
+                        if(e.response.status === 400) {
+                            setImage(error400)
+                        } else if (e.response.status === 500) {
+                            setImage(error500)
+                        } else {
+                            setImage('Some error img')
+                        }
+                    } else {
+                        console.log(e)
+                        setCode('Error!')
+                        setInfo(e.name)
+                        setText(e.message)
+                        setImage(errorUnknown)
+                    }
+                }
             })
     }
 
@@ -55,6 +87,7 @@ const HW13 = () => {
                         id={'hw13-send-true'}
                         onClick={send(true)}
                         xType={'secondary'}
+                        disabled={info === '...loading'}
                         // дописать
 
                     >
@@ -64,6 +97,7 @@ const HW13 = () => {
                         id={'hw13-send-false'}
                         onClick={send(false)}
                         xType={'secondary'}
+                        disabled={info === '...loading'}
                         // дописать
 
                     >
@@ -73,6 +107,7 @@ const HW13 = () => {
                         id={'hw13-send-undefined'}
                         onClick={send(undefined)}
                         xType={'secondary'}
+                        disabled={info === '...loading'}
                         // дописать
 
                     >
@@ -82,6 +117,7 @@ const HW13 = () => {
                         id={'hw13-send-null'}
                         onClick={send(null)} // имитация запроса на не корректный адрес
                         xType={'secondary'}
+                        disabled={info === '...loading'}
                         // дописать
 
                     >

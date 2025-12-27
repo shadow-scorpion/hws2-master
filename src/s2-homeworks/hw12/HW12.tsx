@@ -1,9 +1,9 @@
-import React, {useEffect, useReducer} from 'react'
+import React, {useEffect } from 'react'
 import s from './HW12.module.css'
 import s2 from '../../s1-main/App.module.css'
 import SuperSelect from '../hw07/common/c5-SuperSelect/SuperSelect'
 import {useDispatch, useSelector} from 'react-redux'
-import { changeThemeIdAC, themeReducer} from './bll/themeReducer'
+import { changeThemeIdAC } from './bll/themeReducer'
 import {AppStoreType} from "../hw10/bll/store";
 
 /*
@@ -30,8 +30,6 @@ const HW12 = () => {
     const change = (id: number) => { // дописать функцию
         dispatch(changeThemeIdAC(id))
     }
-
-    console.log(themeId.themeId)
 
     useEffect(() => {
         document.documentElement.dataset.theme = themeId.themeId + ''
