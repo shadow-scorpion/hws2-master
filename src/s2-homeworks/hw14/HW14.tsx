@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import s2 from '../../s1-main/App.module.css'
 import s from './HW14.module.css'
-import axios from 'axios'
 import SuperDebouncedInput from './common/c8-SuperDebouncedInput/SuperDebouncedInput'
 import {useSearchParams} from 'react-router-dom'
-
+import axios from "axios";
+// Получение данных из сервера при вводе каждого символа. Выполняется запрос с помощью setTimeout при вызове которого будет идти запрос на сервер.
+//     Если в течении 1500 миллисекунд пользователь нажимает следующий символ то старый запрос отменяется и запускается новый с тем же промежутком,
+//     до тех пор пока запрос не отработает.
 /*
 * 1 - дописать функцию onChangeTextCallback в SuperDebouncedInput
 * 2 - дописать функцию sendQuery в HW14
@@ -21,8 +23,11 @@ const getTechs = (find: string) => {
         )
         .catch((e) => {
             alert(e.response?.data?.errorText || e.message)
+            throw e
         })
 }
+
+
 
 const HW14 = () => {
     const [find, setFind] = useState('')
@@ -30,22 +35,34 @@ const HW14 = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<string[]>([])
 
+
     const sendQuery = (value: string) => {
         setLoading(true)
         getTechs(value)
             .then((res) => {
                 // делает студент
-
                 // сохранить пришедшие данные
-
-                //
+                setTechs(res.data.techs)
             })
+            .catch((e) => {
+            console.log(e)
+            })
+            .finally(()=> {
+            setLoading(false)
+        })
     }
+
 
     const onChangeText = (value: string) => {
         setFind(value)
         // делает студент
+        // setSearchParams()
 
+        setSearchParams(prev => {
+            const params = new URLSearchParams(prev)
+            params.set('find', value)
+            return params
+        })
         // добавить/заменить значение в квери урла
         // setSearchParams(
 
@@ -74,6 +91,7 @@ const HW14 = () => {
                     value={find}
                     onChangeText={onChangeText}
                     onDebouncedChange={sendQuery}
+                    className={s.input}
                 />
 
                 <div id={'hw14-loading'} className={s.loading}>
