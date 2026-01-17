@@ -3,5 +3,12 @@
 }
 
 .loading {
+    /*width: 400px;*/
+    margin-left: 310px;
+}
 
+.input {
+    border-color: #0066CC;
+    padding: 4px;
+    border-radius: 2px;
 }
