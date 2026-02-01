@@ -20,8 +20,16 @@
 
 .rowHeader {
     display: flex;
+    padding: 11px 17px;
+    background-color: #E5E5E5;
+    font-weight: 600;
+    text-transform: capitalize;
 }
 
 .loading {
+    position: relative;
+}
 
+.opacityPagination {
+    opacity: 0.5;
 }

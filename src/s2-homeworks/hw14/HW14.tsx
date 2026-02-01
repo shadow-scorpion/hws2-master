@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import s2 from '../../s1-main/App.module.css'
 import s from './HW14.module.css'
 import SuperDebouncedInput from './common/c8-SuperDebouncedInput/SuperDebouncedInput'
@@ -56,7 +56,7 @@ const HW14 = () => {
     const onChangeText = (value: string) => {
         setFind(value)
         // делает студент
-        // setSearchParams()
+        // setSearchParams()?=
 
         setSearchParams(prev => {
             const params = new URLSearchParams(prev)
