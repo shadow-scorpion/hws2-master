@@ -2,8 +2,13 @@
     display: flex;
 }
 
-.text1 {
+.paginationSelect {
+    margin-right: 10px;
+}
 
+.text1 {
+    text-transform: capitalize;
+    margin-right: 10px;
 }
 
 .text2 {

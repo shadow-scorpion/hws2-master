@@ -5,6 +5,7 @@ import axios from 'axios'
 import SuperPagination from './common/c9-SuperPagination/SuperPagination'
 import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
+import {CircularProgress} from "@mui/material";
 
 /*
 * 1 - дописать SuperPagination
@@ -32,16 +33,17 @@ const getTechs = (params: ParamsType) => {
         .get<{ techs: TechType[], totalCount: number }>(
             'https://samurai.it-incubator.io/api/3.0/homework/test3',
             {params}
-        )
-        .catch((e) => {
-            alert(e.response?.data?.errorText || e.message)
+        ).catch((e) => {
+            alert(JSON.stringify(e))
+            return e
         })
+
 }
 
 const HW15 = () => {
     const [sort, setSort] = useState('')
     const [page, setPage] = useState(1)
-    const [count, setCount] = useState(4)
+    const [count, setCount] = useState(5)
     const [idLoading, setLoading] = useState(false)
     const [totalCount, setTotalCount] = useState(100)
     const [searchParams, setSearchParams] = useSearchParams()
@@ -49,29 +51,47 @@ const HW15 = () => {
 
     const sendQuery = (params: any) => {
         setLoading(true)
-        getTechs(params)
-            .then((res) => {
-                // делает студент
-
-                // сохранить пришедшие данные
-
-                //
-            })
-    }
+        console.log('get dates' ,params)
+            getTechs(params)
+                .then((res) => {
+                    setTechs(res.data.techs)
+                    setTotalCount(res.data.totalCount)
+                    // сохранить пришедшие данные
+                }).catch((e)=> {
+                    alert(e)
+            }).finally(()=> setLoading(false))
+        }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
-
+        setPage(newPage)
         // setPage(
         // setCount(
-
+        setCount(newCount)
         // sendQuery(
+        sendQuery({page: newPage, count: newCount})
         // setSearchParams(
+        setSearchParams((prev) => {
+            const params = new URLSearchParams(prev)
+            params.set('page', String(newPage))
+            params.set('count', String(newCount))
+            return params
+        })
 
         //
     }
 
     const onChangeSort = (newSort: string) => {
+        setSort(newSort)
+        setPage(1)
+        sendQuery({page: 1, count: count, sort: newSort})
+        setSearchParams((prev) => {
+            const params = new URLSearchParams(prev)
+            params.set('sort', newSort)
+            console.log(!params.has('sort'))
+            console.log(params.toString())
+            return params
+        })
         // делает студент
 
         // setSort(
@@ -85,9 +105,16 @@ const HW15 = () => {
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        sendQuery({page: params.page, count: params.count})
-        setPage(+params.page || 1)
-        setCount(+params.count || 4)
+        const usedPage = +params.page || 1
+        const usedCount = +params.count || 4
+        // sendQuery({usedPage, usedCount})
+        sendQuery({page: usedPage, count: usedCount})
+        setPage(usedPage)
+        setCount(usedCount)
+
+        // sendQuery({page: +params.page, count: +params.count})
+        // setPage(+params.page || 1)
+        // setCount(+params.count || 4)
     }, [])
 
     const mappedTechs = techs.map(t => (
@@ -106,8 +133,11 @@ const HW15 = () => {
         <div id={'hw15'}>
             <div className={s2.hwTitle}>Homework #15</div>
 
-            <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}
+            <div className={idLoading ? s.opacityPagination : `${s2.hw} ${s.container}`}>
+                {/*{idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}*/}
+                {idLoading && <div id={'hw15-loading'} className={s.loading}>
+                    <CircularProgress sx={{position: 'absolute', left: '50%', top: '20%', opacity: 1}} size={150}/>
+                </div>}
 
                 <SuperPagination
                     page={page}
@@ -124,7 +154,7 @@ const HW15 = () => {
 
                     <div className={s.developerHeader}>
                         developer
-                        <SuperSort sort={sort} value={'developer'} onChange={onChangeSort}/>
+                        <SuperSort sort={sort} value={'developer'} onChange={onChangeSort} className={s.imgSort}/>
                     </div>
                 </div>
 
