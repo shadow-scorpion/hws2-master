@@ -1,26 +1,44 @@
 .tech {
-    width: 50vw;
+    width: 60px;
 }
 
-.developer {
-
+.container {
+    width: 100%;
+    max-width: 800px;
 }
 
 .techHeader {
-    width: 50vw;
+    width: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.developer {
+    text-transform: capitalize;
 }
 
 .developerHeader {
+    display: flex;
+    align-items: center;
+}
 
+.imgSort {
+    align-self: center;
+}
+
+
+.row,
+.rowHeader {
+    display: flex;
+    gap: 400px;
+    padding: 11px 17px;
 }
 
 .row {
-    display: flex;
+    border-bottom: 1px #E5E5E5 solid;
 }
 
 .rowHeader {
-    display: flex;
-    padding: 11px 17px;
     background-color: #E5E5E5;
     font-weight: 600;
     text-transform: capitalize;
